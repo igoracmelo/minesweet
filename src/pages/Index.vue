@@ -36,6 +36,7 @@
 <script>
 import { defineComponent } from 'vue'
 import Tile from 'components/Tile.vue'
+import { randomInt, createMatrix, countAdjascents } from 'src/util/math'
 import { BOMB } from 'src/constants'
 
 export default defineComponent({
