@@ -29,11 +29,11 @@ export function countAdjascents (matrix, pos, target, possibs = 8) {
   for (let i = 0; i < possibs; i++) {
     const r = row + deltaRow[i]
     const c = col + deltaCol[i]
-    const isBomb =
+    const isTarget =
       between(r, 0, totalRows - 1) &&
       between(c, 0, totalCols - 1) &&
       matrix[r][c] === target
-    if (isBomb) count++
+    if (isTarget) count++
   }
   return count
 }
