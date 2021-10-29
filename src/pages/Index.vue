@@ -105,7 +105,7 @@ export default defineComponent({
   methods: {
     onTileClicked (pos) {
       const [row, col] = pos
-      const gameFreezed = this.lose || this.won || this.boardRevealed[row][col]
+      const gameFreezed = this.lose || this.boardRevealed[row][col] || this.won
 
       if (gameFreezed) return
 
