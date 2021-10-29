@@ -66,8 +66,8 @@ export default {
 <style lang="scss" scoped>
   .Tile {
     border: 3px outset;
-    width: 40px;
-    height: 40px;
+    width: 30px;
+    height: 30px;
     cursor: pointer;
 
     &.revealed {
