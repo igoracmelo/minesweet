@@ -1,6 +1,17 @@
 <template>
   <q-page class="Index">
     <div class="Game">
+      <div class="top">
+        <label>
+          Rows
+          <input type="number" min="3" v-model="nRows">
+        </label>
+        <label>
+          Cols
+          <input type="number" min="5" v-model="nCols">
+        </label>
+      </div>
+
       <div class="Board">
         <div class="row" v-for="(_, row) of board" :key="row">
           <Tile
@@ -86,6 +97,22 @@ export default defineComponent({
     gap: 1rem;
     align-items: center;
     justify-content: center;
+  }
+
+  .top {
+    display: flex;
+    gap: 1rem;
+  }
+
+  label {
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+  }
+
+  input {
+    text-align: center;
+    width: 70px;
   }
 
   .Board {
