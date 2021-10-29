@@ -99,6 +99,11 @@ export default defineComponent({
       const gameFreezed = this.lose || this.won || this.boardRevealed[row][col]
 
       if (gameFreezed) return
+
+      if (this.board[row][col] === BOMB) {
+        this.lose = true
+      }
+
       this.boardRevealed[row][col] = true
     },
 
