@@ -69,4 +69,3 @@ export function findLargestField (matrix, pos, avoid, bitmap) {
     }
   }
 }
-
