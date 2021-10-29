@@ -17,7 +17,7 @@ export function createMatrix (row, col, fillWith) {
   return board
 }
 
-export function* iterateAdjacents (matrix, pos) {
+export function* iterateAdjacents (matrix, pos, getValue = true) {
   const [row, col] = pos
 
   const deltaRow = [0, 0, 1, -1, 1, -1, 1, -1]
@@ -33,7 +33,10 @@ export function* iterateAdjacents (matrix, pos) {
       between(r, 0, totalRows - 1) &&
       between(c, 0, totalCols - 1)
 
-    if (isValid) yield matrix[r][c]
+    if (isValid) {
+      if (getValue) yield matrix[r][c]
+      else yield [r, c]
+    }
   }
 }
 
