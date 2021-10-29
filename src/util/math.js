@@ -17,7 +17,7 @@ export function createMatrix (row, col, fillWith) {
   return board
 }
 
-export function* iterateAdjascents (matrix, pos) {
+export function* iterateAdjacents (matrix, pos) {
   const [row, col] = pos
 
   const deltaRow = [0, 0, 1, -1, 1, -1, 1, -1]
@@ -37,8 +37,8 @@ export function* iterateAdjascents (matrix, pos) {
   }
 }
 
-export function countAdjascents (matrix, pos, target, possibs = 8) {
-  const adjIterator = iterateAdjascents(matrix, pos)
+export function countAdjacents (matrix, pos, target, possibs = 8) {
+  const adjIterator = iterateAdjacents(matrix, pos)
   let count = 0
 
   for (let i = 0; i < possibs; i++) {

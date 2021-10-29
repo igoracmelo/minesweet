@@ -45,7 +45,7 @@
 <script>
 import { defineComponent } from 'vue'
 import Tile from 'components/Tile.vue'
-import { randomInt, createMatrix, countAdjascents } from 'src/util/math'
+import { randomInt, createMatrix, countAdjacents } from 'src/util/math'
 import { BOMB } from 'src/constants'
 
 export default defineComponent({
@@ -104,7 +104,7 @@ export default defineComponent({
         this.lose = true
       } else {
         this.revealedCount++
-        this.board[row][col] = countAdjascents(this.board, pos, BOMB)
+        this.board[row][col] = countAdjacents(this.board, pos, BOMB)
       }
 
       this.boardRevealed[row][col] = true
