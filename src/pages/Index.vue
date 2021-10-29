@@ -102,6 +102,9 @@ export default defineComponent({
 
       if (this.board[row][col] === BOMB) {
         this.lose = true
+      } else {
+        this.revealedCount++
+        this.board[row][col] = countAdjascents(this.board, pos, BOMB)
       }
 
       this.boardRevealed[row][col] = true
