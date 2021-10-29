@@ -48,6 +48,7 @@ export default defineComponent({
 
   data () {
     return {
+      lose: false,
       bombsCount: 3,
       revealedCount: 0,
       nRows: 3,
@@ -86,6 +87,9 @@ export default defineComponent({
   methods: {
     onTileClicked (pos) {
       const [row, col] = pos
+      const gameFreezed = this.lose || this.won || this.boardRevealed[row][col]
+
+      if (gameFreezed) return
       this.boardRevealed[row][col] = true
     },
 
