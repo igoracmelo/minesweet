@@ -39,6 +39,15 @@ export default defineComponent({
     }
   },
 
+  watch: {
+    nRows () {
+      this.newGame()
+    },
+    nCols () {
+      this.newGame()
+    },
+  },
+
   created () {
     this.newGame()
   },
