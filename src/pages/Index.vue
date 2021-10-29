@@ -45,7 +45,7 @@
 <script>
 import { defineComponent } from 'vue'
 import Tile from 'components/Tile.vue'
-import { randomInt, createMatrix, countAdjacents } from 'src/util/math'
+import { randomInt, createMatrix, countAdjacents, findLargestField } from 'src/util/math'
 import { BOMB } from 'src/constants'
 
 export default defineComponent({
@@ -104,6 +104,8 @@ export default defineComponent({
         this.lose = true
       } else {
         this.revealedCount++
+        const avoid = (currPos) => countAdjacents(this.board, currPos, BOMB)
+        findLargestField(this.board, pos, avoid, this.boardRevealed)
         this.board[row][col] = countAdjacents(this.board, pos, BOMB)
       }
 

@@ -51,3 +51,22 @@ export function countAdjacents (matrix, pos, target, possibs = 8) {
 
   return count
 }
+
+export function findLargestField (matrix, pos, avoid, bitmap) {
+  const [row, col] = pos
+  if (avoid(pos)) return
+
+  bitmap[row][col] = true
+  const adjIterator = iterateAdjacents(matrix, pos, false)
+
+  for (let i = 0; i < 4; i++) {
+    const newPos = adjIterator.next().value
+    if (!newPos) continue
+    console.log(newPos)
+    const [r, c] = newPos
+    if (!bitmap[r][c]) {
+      findLargestField(matrix, newPos, avoid, bitmap)
+    }
+  }
+}
+
