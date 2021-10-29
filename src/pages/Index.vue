@@ -29,6 +29,15 @@
           />
         </div>
       </div>
+
+      <div class="Info">
+        <span class="lose" v-if="lose">You lose :(</span>
+        <span class="won" v-else-if="won">You won!</span>
+      </div>
+
+      <button class="Button" @click="newGame">
+        Reset
+      </button>
     </div>
   </q-page>
 </template>
@@ -161,5 +170,23 @@ export default defineComponent({
 
   .row {
     display: flex;
+  }
+
+  .Info {
+    font-size: 11px;
+    .lose { color: red; }
+    .won { color: green; }
+  }
+
+  .Button {
+    align-self: stretch;
+    background: transparent;
+    border: 3px outset;
+    padding: .5rem;
+    cursor: pointer;
+
+    &:active {
+      border: inset;
+    }
   }
 </style>
