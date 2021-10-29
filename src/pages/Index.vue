@@ -43,6 +43,7 @@ export default defineComponent({
 
   data () {
     return {
+      bombsCount: 3,
       nRows: 3,
       nCols: 5,
       board: [],
@@ -57,6 +58,9 @@ export default defineComponent({
     nCols () {
       this.newGame()
     },
+    bombsCount () {
+      this.newGame()
+    }
   },
 
   created () {
@@ -74,8 +78,22 @@ export default defineComponent({
       this.boardRevealed = createMatrix(this.nRows, this.nCols, false)
     },
 
+    addRandomBombs () {
+      let bombsLeft = this.bombsCount
+      while (bombsLeft) {
+        const row = randomInt(0, this.nRows - 1)
+        const col = randomInt(0, this.nCols - 1)
+
+        if (this.board[row][col] === BOMB) continue
+
+        this.board[row][col] = BOMB
+        bombsLeft--
+      }
+    },
+
     newGame () {
       this.newBoard()
+      this.addRandomBombs()
       console.log(this.board)
     }
   }
