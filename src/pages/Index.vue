@@ -122,6 +122,7 @@ export default defineComponent({
 
     newGame () {
       this.revealedCount = 0
+      this.lose = false
       this.newBoard()
       this.addRandomBombs()
       console.log(this.board)
