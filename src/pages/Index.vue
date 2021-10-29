@@ -32,9 +32,15 @@ export default defineComponent({
 
   data () {
     return {
+      nRows: 3,
+      nCols: 5,
       board: [],
       boardRevealed: []
     }
+  },
+
+  created () {
+    this.newGame()
   },
 
   methods: {
@@ -42,6 +48,16 @@ export default defineComponent({
       const [row, col] = pos
       this.boardRevealed[row][col] = true
     },
+
+    newBoard () {
+      this.board = createMatrix(this.nRows, this.nCols, 0)
+      this.boardRevealed = createMatrix(this.nRows, this.nCols, false)
+    },
+
+    newGame () {
+      this.newBoard()
+      console.log(this.board)
+    }
   }
 })
 </script>
