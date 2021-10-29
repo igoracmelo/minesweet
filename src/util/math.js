@@ -17,23 +17,34 @@ export function createMatrix (row, col, fillWith) {
   return board
 }
 
-export function countAdjascents (matrix, pos, target, possibs = 8) {
+export function* iterateAdjascents (matrix, pos) {
   const [row, col] = pos
-  let count = 0
+
   const deltaRow = [0, 0, 1, -1, 1, -1, 1, -1]
   const deltaCol = [1, -1, 0, 0, 1, -1, -1, 1]
 
   const totalRows = matrix.length
   const totalCols = matrix[0].length
 
-  for (let i = 0; i < possibs; i++) {
+  for (let i = 0; i < deltaRow.length; i++) {
     const r = row + deltaRow[i]
     const c = col + deltaCol[i]
-    const isTarget =
+    const isValid =
       between(r, 0, totalRows - 1) &&
-      between(c, 0, totalCols - 1) &&
-      matrix[r][c] === target
-    if (isTarget) count++
+      between(c, 0, totalCols - 1)
+
+    if (isValid) yield matrix[r][c]
   }
+}
+
+export function countAdjascents (matrix, pos, target, possibs = 8) {
+  const adjIterator = iterateAdjascents(matrix, pos)
+  let count = 0
+
+  for (let i = 0; i < possibs; i++) {
+    const value = adjIterator.next().value
+    if (value === target) count++
+  }
+
   return count
 }
