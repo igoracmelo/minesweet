@@ -10,6 +10,10 @@
           Cols
           <input type="number" min="5" v-model="nCols">
         </label>
+        <label>
+          Bombs
+          <input type="number" min="1" :max="nRows * nCols - 1" v-model="bombsCount">
+        </label>
       </div>
 
       <div class="Board">
