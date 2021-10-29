@@ -12,7 +12,7 @@
         </label>
         <label>
           Bombs
-          <input type="number" min="1" :max="nRows * nCols - 1" v-model="bombsCount">
+          <input type="number" min="1" :max="tilesCount - 1" v-model="bombsCount">
         </label>
       </div>
 
@@ -49,6 +49,7 @@ export default defineComponent({
   data () {
     return {
       bombsCount: 3,
+      revealedCount: 0,
       nRows: 3,
       nCols: 5,
       board: [],
@@ -70,6 +71,16 @@ export default defineComponent({
 
   created () {
     this.newGame()
+  },
+
+  computed: {
+    tilesCount () {
+      return this.nRows * this.nCols
+    },
+
+    won () {
+      return this.revealedCount === this.tilesCount - this.bombsCount
+    }
   },
 
   methods: {
@@ -97,6 +108,7 @@ export default defineComponent({
     },
 
     newGame () {
+      this.revealedCount = 0
       this.newBoard()
       this.addRandomBombs()
       console.log(this.board)
