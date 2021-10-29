@@ -1,1 +1,12 @@
-// app global css in SCSS form
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+* {
+  font: inherit;
+  color: inherit;
+}
+
+body {
+  font-family: 'Press Start 2P', monospace;
+  color: #222;
+  background-color: #bbb;
+}
