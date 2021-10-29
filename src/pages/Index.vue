@@ -59,7 +59,6 @@ export default defineComponent({
     return {
       lose: false,
       bombsCount: 3,
-      revealedCount: 0,
       nRows: 3,
       nCols: 5,
       board: [],
@@ -90,6 +89,16 @@ export default defineComponent({
 
     won () {
       return this.revealedCount === this.tilesCount - this.bombsCount
+    },
+
+    revealedCount () {
+      let count = 0
+      for (const row of this.boardRevealed) {
+        for (const cell of row) {
+          count += Number(cell)
+        }
+      }
+      return count
     }
   },
 
@@ -103,7 +112,6 @@ export default defineComponent({
       if (this.board[row][col] === BOMB) {
         this.lose = true
       } else {
-        this.revealedCount++
         const avoid = (currPos) => countAdjacents(this.board, currPos, BOMB)
         findLargestField(this.board, pos, avoid, this.boardRevealed)
         this.board[row][col] = countAdjacents(this.board, pos, BOMB)
