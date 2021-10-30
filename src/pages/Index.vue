@@ -4,11 +4,11 @@
       <div class="top">
         <label>
           Rows
-          <input type="number" min="3" v-model="nRows">
+          <input type="number" min="5" v-model="nRows">
         </label>
         <label>
           Cols
-          <input type="number" min="5" v-model="nCols">
+          <input type="number" min="8" v-model="nCols">
         </label>
         <label>
           Bombs
@@ -30,10 +30,8 @@
         </div>
       </div>
 
-      <div class="Info">
-        <span class="lose" v-if="lose">You lose :(</span>
-        <span class="won" v-else-if="won">You won!</span>
-      </div>
+      <span class="info lose" v-if="lose">You lose :(</span>
+      <span class="info won" v-else-if="won">You won!</span>
 
       <button class="Button" @click="newGame">
         Reset
@@ -58,9 +56,9 @@ export default defineComponent({
   data () {
     return {
       lose: false,
-      bombsCount: 3,
-      nRows: 3,
-      nCols: 5,
+      bombsCount: 1,
+      nRows: 5,
+      nCols: 8,
       board: [],
       boardRevealed: []
     }
@@ -151,23 +149,28 @@ export default defineComponent({
 
 <style lang="scss" scoped>
   .Index {
+    background-color: rgb(136, 255, 171);
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 2rem;
+    padding: 2rem 1rem;
   }
 
   .Game {
+    background-color: #bbb;
     padding: 1rem;
     display: flex;
     flex-direction: column;
     gap: 1rem;
     align-items: center;
     justify-content: center;
+    border: 5px outset;
   }
 
   .top {
+    width: 100%;
     display: flex;
+    justify-content: space-between;
     gap: 1rem;
   }
 
@@ -179,30 +182,35 @@ export default defineComponent({
 
   input {
     text-align: center;
+    border: 3px inset;
     width: 70px;
   }
 
   .Board {
-    border: 3px outset;
-    padding: 1rem;
+    border: 3px inset;
   }
 
   .row {
     display: flex;
   }
 
-  .Info {
+  .info {
     font-size: 11px;
-    .lose { color: red; }
-    .won { color: green; }
+    &.lose { color: red; }
+    &.won { color: green; }
   }
 
   .Button {
     align-self: stretch;
-    background: transparent;
-    border: 3px outset;
+    background: #222;
+    color: #eee;
+    border: 3px outset white;
     padding: .5rem;
     cursor: pointer;
+
+    &:hover {
+      background: #555;
+    }
 
     &:active {
       border: inset;
